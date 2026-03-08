@@ -47,7 +47,9 @@ jobs:
         BUILD_MINIMAL=yes \
         BUILD_DESKTOP=no \
         KERNEL_CONFIGURE=no \
-        USE_DOCKER=no
+        USE_DOCKER=no \
+        SKIP_CONTAINER=yes \
+        BUILD_CONTAINER=no
 
     - name: Upload kernel debs
       if: always()   # 即使前一步失败也执行
