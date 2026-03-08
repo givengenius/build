@@ -12,6 +12,14 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
+    - name: Cache Armbian
+      uses: actions/cache@v4
+      with:
+        path: |
+          cache
+          output/cache
+        key: armbian-cache
+
     - name: Install dependencies
       run: |
         sudo apt update
@@ -24,9 +32,14 @@ jobs:
           debootstrap \
           device-tree-compiler \
           python3
+        sudo update-binfmts --enable
 
     - name: Build Armbian Image
       run: |
+        export LC_ALL=C
+        export LANG=C
+        export DEBIAN_FRONTEND=noninteractive
+        
         ./compile.sh \
         BOARD=vontar-h618 \
         BRANCH=current \
