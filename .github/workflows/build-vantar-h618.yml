@@ -54,7 +54,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: h618-kernel-debs
-        path: |
-          output/packages-hashed/global/linux-image-current-sunxi64_*.deb
-          output/packages-hashed/global/linux-dtb-current-sunxi64_*.deb
-          output/packages-hashed/global/linux-headers-current-sunxi64_*.deb
+        path: output/packages-hashed/*.tar
