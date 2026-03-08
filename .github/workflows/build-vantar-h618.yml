@@ -47,7 +47,17 @@ jobs:
         BUILD_MINIMAL=yes \
         BUILD_DESKTOP=no \
         KERNEL_CONFIGURE=no \
-        ARTIFACT_IGNORE_CACHE=yes
+        USE_DOCKER=no
+
+    - name: Upload kernel debs
+      if: always()   # 即使前一步失败也执行
+      uses: actions/upload-artifact@v4
+      with:
+        name: h618-kernel-debs
+        path: |
+          output/packages-hashed/global/linux-image-current-sunxi64_*.deb
+          output/packages-hashed/global/linux-dtb-current-sunxi64_*.deb
+          output/packages-hashed/global/linux-headers-current-sunxi64_*.deb
 
     - name: Upload image
       uses: actions/upload-artifact@v4
