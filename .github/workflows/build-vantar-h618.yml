@@ -40,14 +40,12 @@ jobs:
         export LANG=C
         export DEBIAN_FRONTEND=noninteractive
         
-        ./compile.sh \
+        ./compile.sh kernel \
         BOARD=vontar-h618 \
         BRANCH=current \
         RELEASE=bookworm \
         BUILD_DESKTOP=no \
-        KERNEL_ONLY=yes \
         KERNEL_CONFIGURE=no \
-        BUILD_DESKTOP=no \
         BUILD_MINIMAL=yes
        
 
