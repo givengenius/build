@@ -47,6 +47,8 @@ jobs:
         BUILD_DESKTOP=no \
         KERNEL_ONLY=yes \
         KERNEL_CONFIGURE=no \
+        BUILD_DESKTOP=no \
+        BUILD_MINIMAL=yes
        
 
     - name: Upload kernel debs
