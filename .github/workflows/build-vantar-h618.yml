@@ -1,0 +1,42 @@
+name: Build Armbian Vontar H618
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 600
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y \
+          git curl wget zip unzip \
+          build-essential bc \
+          gcc g++ make \
+          libssl-dev libncurses5-dev \
+          qemu-user-static \
+          debootstrap \
+          device-tree-compiler \
+          python3
+
+    - name: Build Armbian Image
+      run: |
+        ./compile.sh \
+        BOARD=vontar-h618 \
+        BRANCH=current \
+        RELEASE=bookworm \
+        BUILD_MINIMAL=yes \
+        BUILD_DESKTOP=no \
+        KERNEL_CONFIGURE=no
+
+    - name: Upload image
+      uses: actions/upload-artifact@v4
+      with:
+        name: armbian-h618
+        path: output/images/*
