@@ -5,7 +5,7 @@ BOARD_MAINTAINER=""
 BOOTCONFIG="vontar_h618_defconfig"
 OVERLAY_PREFIX="sun50i-h616"
 BOOT_LOGO="desktop"
-KERNEL_TARGET="edge,dev"
+KERNEL_TARGET="current,edge,dev"
 FORCE_BOOTSCRIPT_UPDATE="yes"
 BOOTFS_TYPE="fat"
 
