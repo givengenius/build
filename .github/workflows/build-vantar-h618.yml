@@ -44,6 +44,7 @@ jobs:
         BOARD=vontar-h618 \
         BRANCH=current \
         RELEASE=bookworm \
+        BUILD_DESKTOP=no \
         KERNEL_ONLY=yes \
         KERNEL_CONFIGURE=no \
        
