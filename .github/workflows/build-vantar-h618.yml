@@ -20,20 +20,6 @@ jobs:
           output/cache
         key: armbian-cache
 
-    - name: Install dependencies
-      run: |
-        sudo apt update
-        sudo apt install -y \
-          git curl wget zip unzip \
-          build-essential bc \
-          gcc g++ make \
-          libssl-dev libncurses5-dev \
-          qemu-user-static \
-          debootstrap \
-          device-tree-compiler \
-          python3
-        sudo update-binfmts --enable
-
     - name: Build Armbian Image
       run: |
         export LC_ALL=C
@@ -44,9 +30,9 @@ jobs:
         BOARD=vontar-h618 \
         BRANCH=current \
         RELEASE=bookworm \
-        BUILD_DESKTOP=no \
         KERNEL_CONFIGURE=no \
-        BUILD_MINIMAL=yes
+        ARTIFACT_IGNORE_CACHE=yes \
+        SKIP_ARTIFACT_CLEANUP=yes
        
 
     - name: Upload kernel debs
@@ -54,4 +40,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: h618-kernel-debs
-        path: output/packages-hashed/*.tar
+        path: output/packages-hashed/global/*.deb
