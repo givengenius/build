@@ -39,5 +39,5 @@ jobs:
       if: always()   # 即使前一步失败也执行
       uses: actions/upload-artifact@v4
       with:
-        name: h618-kernel-debs
-        path: output/packages-hashed/global/*.deb
+        name: h618-kernel
+        path: output/packages-hashed/*.tar
